@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.blog.serve.moodEssay.mapper.MoodEssayMapper">
+  <resultMap id="BaseResultMap" type="com.my.blog.serve.moodEssay.entity.MoodEssay">
+    <id column="pk_moodEssay" jdbcType="INTEGER" property="pk_moodEssay" />
+    <result column="essayTitle" jdbcType="VARCHAR" property="essayTitle" />
+    <result column="essayContent" jdbcType="VARCHAR" property="essayContent" />
+    <result column="ts" jdbcType="VARCHAR" property="ts" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pk_moodEssay, essayTitle, essayContent, ts
+  </sql>
+  <select id="selectByExample" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssayExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mood_essay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssayKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mood_essay
+    where pk_moodEssay = #{pk_moodEssay,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssayKey">
+    delete from mood_essay
+    where pk_moodEssay = #{pk_moodEssay,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssayExample">
+    delete from mood_essay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssay">
+    insert into mood_essay (pk_moodEssay, essayTitle, essayContent, 
+      ts)
+    values (#{pk_moodEssay,jdbcType=INTEGER}, #{essayTitle,jdbcType=VARCHAR}, #{essayContent,jdbcType=VARCHAR}, 
+      #{ts,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssay">
+    insert into mood_essay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pk_moodEssay != null">
+        pk_moodEssay,
+      </if>
+      <if test="essayTitle != null">
+        essayTitle,
+      </if>
+      <if test="essayContent != null">
+        essayContent,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pk_moodEssay != null">
+        #{pk_moodEssay,jdbcType=INTEGER},
+      </if>
+      <if test="essayTitle != null">
+        #{essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="essayContent != null">
+        #{essayContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null">
+        #{ts,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssayExample" resultType="java.lang.Long">
+    select count(*) from mood_essay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mood_essay
+    <set>
+      <if test="record.pk_moodEssay != null">
+        pk_moodEssay = #{record.pk_moodEssay,jdbcType=INTEGER},
+      </if>
+      <if test="record.essayTitle != null">
+        essayTitle = #{record.essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.essayContent != null">
+        essayContent = #{record.essayContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ts != null">
+        ts = #{record.ts,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mood_essay
+    set pk_moodEssay = #{record.pk_moodEssay,jdbcType=INTEGER},
+      essayTitle = #{record.essayTitle,jdbcType=VARCHAR},
+      essayContent = #{record.essayContent,jdbcType=VARCHAR},
+      ts = #{record.ts,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssay">
+    update mood_essay
+    <set>
+      <if test="essayTitle != null">
+        essayTitle = #{essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="essayContent != null">
+        essayContent = #{essayContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pk_moodEssay = #{pk_moodEssay,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.my.blog.serve.moodEssay.entity.MoodEssay">
+    update mood_essay
+    set essayTitle = #{essayTitle,jdbcType=VARCHAR},
+      essayContent = #{essayContent,jdbcType=VARCHAR},
+      ts = #{ts,jdbcType=VARCHAR}
+    where pk_moodEssay = #{pk_moodEssay,jdbcType=INTEGER}
+  </update>
+</mapper>

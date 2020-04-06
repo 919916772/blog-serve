@@ -79,7 +79,7 @@
         <!-- 负责：1，key类（见context的defaultModelType）；2，java类；3，查询类 -->
         <!-- targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制 -->
         <!-- targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录 -->
-        <javaModelGenerator targetPackage="com.my.blog.serve.messageBoard.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.my.blog.serve.moodEssay.entity" targetProject="src/main/java">
             <!--  for MyBatis3/MyBatis3Simple 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter -->
             <property name="constructorBased" value="false"/>
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
@@ -110,7 +110,7 @@
         <!--    3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；-->
         <!--    注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER-->
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.my.blog.serve.messageBoard.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.my.blog.serve.moodEssay.mapper" targetProject="src/main/java">
             <!--在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true"/>
             <!-- 可以为所有生成的接口添加一个父接口，但是MBG只负责生成，不负责检查 (暂且不用注意这一点) -->
@@ -150,7 +150,7 @@
         <!--        14，delimitIdentifiers：参考tableName的解释，注意，默认的delimitIdentifiers是双引号，如果类似MYSQL这样的数据库，使用的是`（反引号，那么还需要设置context的beginningDelimiter和endingDelimiter属性）-->
         <!--        15，delimitAllColumns：设置是否所有生成的SQL中的列名都使用标识符引起来。默认为false，delimitIdentifiers参考context的属性-->
     <!--       注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；-->
-        <table tableName="message_board" >
+        <table tableName="mood_essay">
             <!-- tableName="%"通配符 所有的表都建立  -->
             <!--<table tableName="tb_user" domainObjectName="Tuser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
             <!-- 参考 javaModelGenerator 的 constructorBased属性 -->

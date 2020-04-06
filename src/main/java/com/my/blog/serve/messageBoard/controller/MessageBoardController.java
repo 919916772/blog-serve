@@ -38,8 +38,9 @@ public class MessageBoardController {
     public String personMessage(@RequestBody Map<String,String> map){
         MessageBoard messageBoard = new MessageBoard();
         messageBoard.setAuthor(map.get("author"));
-        messageBoard.setMessageContent(map.get("messageContent"));
         messageBoard.setTs(map.get("Ts"));
+        messageBoard.setMessageContent(map.get("messageContent"));
+
         messageBoardService.insertSelective(messageBoard);
         JSONObject result = new JSONObject();
         JSONObject data = new JSONObject();

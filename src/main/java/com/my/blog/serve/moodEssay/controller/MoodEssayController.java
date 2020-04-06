@@ -1,7 +1,6 @@
 package com.my.blog.serve.moodEssay.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.my.blog.serve.messageBoard.entity.MessageBoard;
 import com.my.blog.serve.moodEssay.entity.MoodEssay;
 import com.my.blog.serve.moodEssay.service.MoodEssayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class MoodEssayController {
         List<MoodEssay> moodEssayList = moodEssayService.selectByExample();
         JSONObject result = new JSONObject();
         JSONObject data = new JSONObject();
-        data.put("messageBoardList",moodEssayList);
+        data.put("moodEssayList",moodEssayList);
         result.put("code", 20000);
         result.put("data", data);
         return result.toJSONString();
